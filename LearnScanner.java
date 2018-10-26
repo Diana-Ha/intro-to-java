@@ -1,6 +1,9 @@
 import java.util.Scanner;
 
 public class LearnScanner {
+    /*
+    System will request user name and then greet user with that name.
+    */
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         System.out.println("Welcome!");
