@@ -3,7 +3,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class LongestName {
-
+/*
+Input number of names you want to compare, then input the names separately as requested.
+Program will identify and display the longest name provided. 
+*/
     public static void main(String[] args) {
         System.out.print("How many names would you like to compare? ");
         Scanner numNames = new Scanner(System.in);
