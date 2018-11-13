@@ -68,12 +68,33 @@ public class TripPlanner {
     public static void calculateTimeDifference() {
         System.out.print("What is the time difference, in hours, between your home and your destination? ");
         Scanner inputTimeDiff = new Scanner(System.in);
-        int timeDiff = inputTimeDiff.nextInt();
-        if (timeDiff < 23) {
-            System.out.println("That means that when it is midnight at home it will be " + (MIDNIGHT + timeDiff % HOURS_PER_DAY)
-                    + ":00 in your travel destination \nand when it is noon at home it will be " + (NOON + timeDiff % HOURS_PER_DAY) + ":00.");
-        } else {
+        int timeDiffInput = inputTimeDiff.nextInt();
+        int timeDiffCalc = timeDiffInput;
+        int changeInDays = timeDiffInput/HOURS_PER_DAY;
 
+        //if input is positive
+        if (timeDiffInput >= 0) {
+            if (Math.abs(timeDiffCalc) >= HOURS_PER_DAY) {  //if input is 24 hours or more
+                while (Math.abs(timeDiffCalc) >= HOURS_PER_DAY) {
+                    timeDiffCalc = Math.abs(timeDiffCalc) - HOURS_PER_DAY;
+                }
+            }
+            System.out.println("That means that when it is midnight at home it will be " + (MIDNIGHT + timeDiffCalc)
+                    + ":00 (+" + changeInDays + " days) in your travel destination \nand when it is noon at home it " +
+                    "will be " + (NOON + timeDiffCalc) + ":00 (+" + changeInDays + " days).");
+        } else { //if input is negative
+            if (Math.abs(timeDiffCalc)>=HOURS_PER_DAY) {  //if input is 24 hours or more
+                while (Math.abs(timeDiffCalc)>=HOURS_PER_DAY) {
+                    timeDiffCalc = Math.abs(timeDiffCalc) - HOURS_PER_DAY;
+                }
+                timeDiffCalc *= -1;
+            }
+            //map real time to military time
+            Integer[] militaryTimeList = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23};
+
+            System.out.println("That means that when it is midnight at home it will be " + militaryTimeList[HOURS_PER_DAY + timeDiffCalc]
+                    + ":00 (" + (changeInDays-1) + " days) in your travel destination \nand when it is noon at home it " +
+                    "will be " + (NOON + timeDiffCalc) + ":00 (" + changeInDays + " days) in your travel destination.");
         }
         createDivider();
     }
@@ -82,7 +103,7 @@ public class TripPlanner {
         System.out.print("What is the square area of your destination country in km2? ");
         Scanner inputArea = new Scanner(System.in);
         int area = inputArea.nextInt();
-        System.out.println("In miles^2 that is " + df2.format(area * KM2_TO_MILES2) + ".");
+        System.out.println("That is equivalent to " + df2.format(area * KM2_TO_MILES2) + " miles squared.");
         createDivider();
     }
 
