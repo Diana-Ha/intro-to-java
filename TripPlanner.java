@@ -7,8 +7,8 @@ public class TripPlanner {
     This program will provide the following information to help the user plan his/her trip
     based on user input:
     - Budget in local currency
-    - Local time
-    - Country's area in miles^2
+    - Time at destination
+    - Country's area in miles squared
      */
 
     private static final int HOURS_PER_DAY = 24;
@@ -106,10 +106,6 @@ public class TripPlanner {
         System.out.println("That is equivalent to " + df2.format(area * KM2_TO_MILES2) + " miles squared.");
         createDivider();
     }
-
-/*    public static void calculateDistance() {
-        System.out.print("")
-    }*/
 
     public static void createDivider() {
         System.out.println("***********\n");
