@@ -25,7 +25,6 @@ public class TripPlanner {
         calculateBudget();
         calculateTimeDifference();
         calculateCountryArea();
-        //calculateDistance();
     }
 
     public static void greetUser() {
